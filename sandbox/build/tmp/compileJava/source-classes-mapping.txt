@@ -1,2 +1,0 @@
-MyOneProgram.java
- MyOneProgram
