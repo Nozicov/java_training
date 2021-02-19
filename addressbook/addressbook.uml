@@ -3,28 +3,33 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="0.0" y="391.0">kz.nee.addressbook.GroupDeletionTest</node>
-    <node x="204.0" y="391.0">kz.nee.addressbook.GroupCreationTest</node>
-    <node x="87.0" y="0.0">kz.nee.addressbook.TestBase</node>
+    <node x="0.0" y="255.0">kz.nee.addressbook.appmanager.ApplicationManager</node>
+    <node x="259.0" y="149.0">kz.nee.addressbook.tests.GroupDeletionTest</node>
+    <node x="0.0" y="0.0">kz.nee.addressbook.appmanager.GroupHelper</node>
+    <node x="363.0" y="0.0">kz.nee.addressbook.tests.TestBase</node>
+    <node x="277.0" y="488.0">kz.nee.addressbook.appmanager.SessionHelper</node>
+    <node x="265.0" y="255.0">kz.nee.addressbook.appmanager.NavigationHelper</node>
+    <node x="0.0" y="488.0">kz.nee.addressbook.appmanager.ContactHelper</node>
+    <node x="463.0" y="149.0">kz.nee.addressbook.tests.GroupCreationTest</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="kz.nee.addressbook.GroupDeletionTest" target="kz.nee.addressbook.TestBase">
+    <edge source="kz.nee.addressbook.tests.GroupDeletionTest" target="kz.nee.addressbook.tests.TestBase">
       <point x="0.0" y="-27.0" />
-      <point x="92.0" y="366.0" />
-      <point x="140.5" y="366.0" />
-      <point x="-53.5" y="170.5" />
+      <point x="351.0" y="124.0" />
+      <point x="408.0" y="124.0" />
+      <point x="-45.0" y="49.5" />
     </edge>
-    <edge source="kz.nee.addressbook.GroupCreationTest" target="kz.nee.addressbook.TestBase">
+    <edge source="kz.nee.addressbook.tests.GroupCreationTest" target="kz.nee.addressbook.tests.TestBase">
       <point x="0.0" y="-27.0" />
-      <point x="296.0" y="366.0" />
-      <point x="247.5" y="366.0" />
-      <point x="53.5" y="170.5" />
+      <point x="555.0" y="124.0" />
+      <point x="498.0" y="124.0" />
+      <point x="45.0" y="49.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="553.5" y="191.5" />
+  <settings layout="Hierarchic Group" zoom="0.89209726443769" x="194.0" y="309.0" />
   <SelectedNodes>
-    <node>kz.nee.addressbook.TestBase</node>
+    <node>kz.nee.addressbook.appmanager.ApplicationManager</node>
   </SelectedNodes>
   <Categories>
     <Category>Fields</Category>
