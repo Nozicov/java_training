@@ -1,4 +1,4 @@
-package kz.nee.addressbook;
+package kz.nee.addressbook.model;
 
 public class GroupData {
   private final String name;
