@@ -3,34 +3,87 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="0.0" y="255.0">kz.nee.addressbook.appmanager.ApplicationManager</node>
-    <node x="259.0" y="149.0">kz.nee.addressbook.tests.GroupDeletionTest</node>
-    <node x="0.0" y="0.0">kz.nee.addressbook.appmanager.GroupHelper</node>
-    <node x="363.0" y="0.0">kz.nee.addressbook.tests.TestBase</node>
-    <node x="277.0" y="488.0">kz.nee.addressbook.appmanager.SessionHelper</node>
-    <node x="265.0" y="255.0">kz.nee.addressbook.appmanager.NavigationHelper</node>
-    <node x="0.0" y="488.0">kz.nee.addressbook.appmanager.ContactHelper</node>
-    <node x="463.0" y="149.0">kz.nee.addressbook.tests.GroupCreationTest</node>
+    <node x="352.2037037037037" y="0.0">kz.nee.addressbook.appmanager.HelperBase</node>
+    <node x="333.58333333333326" y="535.0">kz.nee.addressbook.appmanager.ApplicationManager</node>
+    <node x="453.58333333333326" y="922.0">kz.nee.addressbook.tests.GroupDeletionTest</node>
+    <node x="0.0" y="214.0">kz.nee.addressbook.appmanager.GroupHelper</node>
+    <node x="353.58333333333326" y="773.0">kz.nee.addressbook.tests.TestBase</node>
+    <node x="240.99999999999997" y="280.0">kz.nee.addressbook.appmanager.SessionHelper</node>
+    <node x="702.0" y="269.0">kz.nee.addressbook.appmanager.NavigationHelper</node>
+    <node x="450.0" y="247.0">kz.nee.addressbook.appmanager.ContactHelper</node>
+    <node x="249.5833333333333" y="922.0">kz.nee.addressbook.tests.GroupCreationTest</node>
   </nodes>
   <notes />
   <edges>
+    <edge source="kz.nee.addressbook.appmanager.ApplicationManager" target="kz.nee.addressbook.appmanager.GroupHelper">
+      <point x="-100.83333333333326" y="-94.0" />
+      <point x="342.75" y="515.0" />
+      <point x="36.83333333333337" y="515.0" />
+      <point x="-73.66666666666663" y="115.5" />
+    </edge>
+    <edge source="kz.nee.addressbook.appmanager.ApplicationManager" target="kz.nee.addressbook.appmanager.ContactHelper">
+      <point x="9.166666666666686" y="-94.0" />
+      <point x="452.75" y="465.0" />
+      <point x="488.66666666666663" y="465.0" />
+      <point x="-77.33333333333333" y="82.5" />
+    </edge>
     <edge source="kz.nee.addressbook.tests.GroupDeletionTest" target="kz.nee.addressbook.tests.TestBase">
-      <point x="0.0" y="-27.0" />
-      <point x="351.0" y="124.0" />
-      <point x="408.0" y="124.0" />
-      <point x="-45.0" y="49.5" />
+      <point x="46.0" y="-27.0" />
+      <point x="591.5833333333333" y="897.0" />
+      <point x="511.08333333333326" y="897.0" />
+      <point x="67.5" y="49.5" />
     </edge>
     <edge source="kz.nee.addressbook.tests.GroupCreationTest" target="kz.nee.addressbook.tests.TestBase">
-      <point x="0.0" y="-27.0" />
-      <point x="555.0" y="124.0" />
-      <point x="498.0" y="124.0" />
-      <point x="45.0" y="49.5" />
+      <point x="46.0" y="-27.0" />
+      <point x="387.58333333333326" y="897.0" />
+      <point x="421.08333333333326" y="897.0" />
+      <point x="-22.5" y="49.5" />
+    </edge>
+    <edge source="kz.nee.addressbook.appmanager.SessionHelper" target="kz.nee.addressbook.appmanager.HelperBase">
+      <point x="-47.25" y="-49.5" />
+      <point x="288.25" y="184.0" />
+      <point x="406.5787037037037" y="184.0" />
+      <point x="-32.625" y="72.0" />
+    </edge>
+    <edge source="kz.nee.addressbook.appmanager.ApplicationManager" target="kz.nee.addressbook.appmanager.NavigationHelper">
+      <point x="64.16666666666663" y="-94.0" />
+      <point x="507.7499999999999" y="495.0" />
+      <point x="738.8333333333333" y="495.0" />
+      <point x="-73.66666666666669" y="60.5" />
+    </edge>
+    <edge source="kz.nee.addressbook.appmanager.NavigationHelper" target="kz.nee.addressbook.appmanager.HelperBase">
+      <point x="55.25" y="-60.5" />
+      <point x="867.75" y="164.0" />
+      <point x="515.3287037037036" y="164.0" />
+      <point x="76.12499999999994" y="72.0" />
+    </edge>
+    <edge source="kz.nee.addressbook.tests.TestBase" target="kz.nee.addressbook.appmanager.ApplicationManager">
+      <point x="-45.0" y="-49.5" />
+      <point x="398.58333333333326" y="748.0" />
+      <point x="388.58333333333326" y="748.0" />
+      <point x="-55.0" y="94.0" />
+    </edge>
+    <edge source="kz.nee.addressbook.appmanager.GroupHelper" target="kz.nee.addressbook.appmanager.HelperBase">
+      <point x="55.25" y="-115.5" />
+      <point x="165.75" y="174.0" />
+      <point x="384.8287037037037" y="174.0" />
+      <point x="-54.375" y="72.0" />
+    </edge>
+    <edge source="kz.nee.addressbook.appmanager.ApplicationManager" target="kz.nee.addressbook.appmanager.SessionHelper">
+      <point x="-45.833333333333314" y="-94.0" />
+      <point x="397.75" y="485.0" />
+      <point x="272.5" y="485.0" />
+      <point x="-63.0" y="49.5" />
+    </edge>
+    <edge source="kz.nee.addressbook.appmanager.ContactHelper" target="kz.nee.addressbook.appmanager.HelperBase">
+      <point x="58.0" y="-82.5" />
+      <point x="624.0" y="184.0" />
+      <point x="471.82870370370364" y="184.0" />
+      <point x="32.62499999999994" y="72.0" />
     </edge>
   </edges>
   <settings layout="Hierarchic Group" zoom="0.89209726443769" x="194.0" y="309.0" />
-  <SelectedNodes>
-    <node>kz.nee.addressbook.appmanager.ApplicationManager</node>
-  </SelectedNodes>
+  <SelectedNodes />
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>
