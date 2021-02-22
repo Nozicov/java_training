@@ -28,12 +28,12 @@ public class ContactHelper extends HelperBase {
     type(By.name("email"), contactData.getEmail());
 
     if (creation) {
-      try{
+      try {
         new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-      } catch (NoSuchElementException ex){
+      } catch (NoSuchElementException ex) {
         new Select(wd.findElement(By.name("new_group"))).selectByIndex(0);
       }
-    } else{
+    } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }
@@ -42,19 +42,26 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-  public void selectContactEdit() {
-    click(By.xpath("//img[@title='Edit'][1]"));
+  public void selectedContact() {
+    click(By.xpath("//input[@name='selected[]']"));
   }
 
-  public void submitDeleteContact() {
-    click(By.xpath("//input[@value=\"Delete\"]"));
+  public void submitSelectedDeleteContact() {
+    click(By.xpath("//input[@value='Delete']"));
+    if(! isAlertPresent()){
+      Assert.fail("No warning window displayed!");
+    }
+  }
+
+  public void selectedUpdateContact() {
+    click(By.xpath("//img[@title='Edit'][1]"));
   }
 
   public void submitUpdateContact() {
     click(By.xpath("//input[@value=\"Update\"][1]"));
   }
 
-  private void returnContactPage() {
+  public void returnContactPage() {
     click(By.linkText("home page"));
   }
 
