@@ -17,6 +17,9 @@ public class GroupModificationTest extends TestBase{
     app.getGroupHelper().initGroupModification();
     app.getGroupHelper().fillGroupForm(new GroupData("Group-up", "Logo-up", "Comment-up"));
     app.getGroupHelper().submitGroupModification();
+    if (! app.getGroupHelper().isVisibleSuccessMessage()){
+      Assert.fail("Successful group deletion message was not displayed!");
+    }
     app.getGroupHelper().returnGroupPage();
     int after = app.getGroupHelper().getGroupCount();
     Assert.assertEquals(before, after);
