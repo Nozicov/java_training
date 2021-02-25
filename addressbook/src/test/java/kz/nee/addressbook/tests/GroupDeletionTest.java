@@ -13,7 +13,7 @@ public class GroupDeletionTest extends TestBase {
     if (!app.getGroupHelper().isThereAGroup()){
       app.getGroupHelper().createGroup(new GroupData("Group1", "Logo1", "Comment1"));
     }
-    app.getGroupHelper().selectGroup();
+    app.getGroupHelper().selectGroup(before - 1);
     app.getGroupHelper().deleteSelectedGroups();
     if (! app.getGroupHelper().isVisibleSuccessMessage()){
       Assert.fail("Successful group deletion message was not displayed!");

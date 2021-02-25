@@ -13,7 +13,7 @@ public class ContactModificationTest extends TestBase{
       app.getContactHelper().createContact(new ContactData("Yevgeniy", "Nozikov", "NEE", "+77272555777", "+77075555555", "nee@nee.kz", "Group1"), true);
     }
     int before = app.getContactHelper().getContactCount();
-    app.getContactHelper().selectedUpdateContact();
+    app.getContactHelper().selectedUpdateContact(before - 1);
     app.getContactHelper().fillContactForm(new ContactData("Yevgeniy2", "Nozikov2", "NEE2", "+772725557772", "+770755555552", "nee@nee.kz2", null), false);
     app.getContactHelper().submitUpdateContact();
     if (! app.getContactHelper().isVisibleSuccessMessage()){
