@@ -44,4 +44,8 @@ public class HelperBase {
       return false;
     }
   }
+
+  public boolean isVisibleSuccessMessage() {
+    return isElementPresent(By.cssSelector("div.msgbox"));
+  }
 }
