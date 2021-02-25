@@ -4,6 +4,8 @@ import kz.nee.addressbook.model.ContactData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class ContactModificationTest extends TestBase{
 
   @Test
@@ -12,16 +14,16 @@ public class ContactModificationTest extends TestBase{
     if (! app.getContactHelper().isThereAContact()){
       app.getContactHelper().createContact(new ContactData("Yevgeniy", "Nozikov", "NEE", "+77272555777", "+77075555555", "nee@nee.kz", "Group1"), true);
     }
-    int before = app.getContactHelper().getContactCount();
-    app.getContactHelper().selectedUpdateContact(before - 1);
+    List<ContactData> before = app.getContactHelper().getContactList();
+    app.getContactHelper().selectedUpdateContact(before.size() - 1);
     app.getContactHelper().fillContactForm(new ContactData("Yevgeniy2", "Nozikov2", "NEE2", "+772725557772", "+770755555552", "nee@nee.kz2", null), false);
     app.getContactHelper().submitUpdateContact();
     if (! app.getContactHelper().isVisibleSuccessMessage()){
       Assert.fail("Successful contact modification message was not displayed!");
     }
     app.getNavigationHelper().gotoHomePage();
-    int after = app.getContactHelper().getContactCount();
-    Assert.assertEquals(before, after);
+    List<ContactData> after = app.getContactHelper().getContactList();
+    Assert.assertEquals(before.size(), after.size());
     app.getSessionHelper().logout();
   }
 
