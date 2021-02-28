@@ -1,11 +1,11 @@
 package kz.nee.addressbook.tests;
 
+import kz.nee.addressbook.model.ContactData;
 import kz.nee.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class GroupCreationTest extends TestBase {
@@ -23,7 +23,13 @@ public class GroupCreationTest extends TestBase {
     int max = after.stream().max(Comparator.comparingInt(GroupData::getId)).get().getId();
     group.setId(max);
     before.add(group);
-    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+
+    //Comparator<? super GroupData> byId = (c1, c2) -> Integer.compare(g1.getId(), g2.getId());
+    Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
+    before.sort(byId);
+    after.sort(byId);
+
+    Assert.assertEquals(before, after);
 
     app.getSessionHelper().logout();
   }

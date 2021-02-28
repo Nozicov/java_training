@@ -4,6 +4,7 @@ import kz.nee.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class GroupDeletionTest extends TestBase {
@@ -26,6 +27,12 @@ public class GroupDeletionTest extends TestBase {
 
 
     before.remove(before.size() - 1);
+
+    //Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
+    Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
+    before.sort(byId);
+    after.sort(byId);
+
     Assert.assertEquals(before, after);
 
     app.getSessionHelper().logout();
