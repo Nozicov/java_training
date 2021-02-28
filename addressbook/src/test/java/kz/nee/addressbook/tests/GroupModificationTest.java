@@ -4,6 +4,7 @@ import kz.nee.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class GroupModificationTest extends TestBase{
@@ -17,7 +18,9 @@ public class GroupModificationTest extends TestBase{
     List<GroupData> before = app.getGroupHelper().getGroupList();
     app.getGroupHelper().selectGroup(before.size() - 1);
     app.getGroupHelper().initGroupModification();
-    app.getGroupHelper().fillGroupForm(new GroupData("Group-up", "Logo-up", "Comment-up"));
+    String id = before.get(before.size() - 1).getId();
+    GroupData group = new GroupData(id, "Group-up", "Logo-up", "Comment-up");
+    app.getGroupHelper().fillGroupForm(group);
     app.getGroupHelper().submitGroupModification();
     if (! app.getGroupHelper().isVisibleSuccessMessage()){
       Assert.fail("Successful group deletion message was not displayed!");
@@ -25,6 +28,11 @@ public class GroupModificationTest extends TestBase{
     app.getGroupHelper().returnGroupPage();
     List<GroupData> after = app.getGroupHelper().getGroupList();
     Assert.assertEquals(before.size(), after.size());
+
+    before.remove(before.size() - 1);
+    before.add(group);
+    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+
     app.getSessionHelper().logout();
   }
 }

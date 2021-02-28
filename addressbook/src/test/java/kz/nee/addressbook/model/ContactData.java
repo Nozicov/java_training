@@ -1,6 +1,7 @@
 package kz.nee.addressbook.model;
 
 public class ContactData {
+  private final String id;
   private final String firstname;
   private final String lastname;
   private final String nickname;
@@ -10,6 +11,7 @@ public class ContactData {
   private String group;
 
   public ContactData(String firstname, String lastname, String nickname, String home, String mobile, String email, String group) {
+    this.id = null;
     this.firstname = firstname;
     this.lastname = lastname;
     this.nickname = nickname;
@@ -17,6 +19,21 @@ public class ContactData {
     this.mobile = mobile;
     this.email = email;
     this.group = group;
+  }
+
+  public ContactData(String id, String firstname, String lastname, String nickname, String home, String mobile, String email, String group) {
+    this.id = id;
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.nickname = nickname;
+    this.home = home;
+    this.mobile = mobile;
+    this.email = email;
+    this.group = group;
+  }
+
+  public String getId() {
+    return id;
   }
 
   public String getFirstname() {
@@ -50,11 +67,14 @@ public class ContactData {
   @Override
   public String toString() {
     return "ContactData{" +
-            "firstname='" + firstname + '\'' +
+            "id='" + id + '\'' +
+            ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
+            ", nickname='" + nickname + '\'' +
             ", home='" + home + '\'' +
             ", mobile='" + mobile + '\'' +
             ", email='" + email + '\'' +
+            ", group='" + group + '\'' +
             '}';
   }
 
@@ -65,20 +85,26 @@ public class ContactData {
 
     ContactData that = (ContactData) o;
 
+    if (id != null ? !id.equals(that.id) : that.id != null) return false;
     if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
     if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
+    if (nickname != null ? !nickname.equals(that.nickname) : that.nickname != null) return false;
     if (home != null ? !home.equals(that.home) : that.home != null) return false;
     if (mobile != null ? !mobile.equals(that.mobile) : that.mobile != null) return false;
-    return email != null ? email.equals(that.email) : that.email == null;
+    if (email != null ? !email.equals(that.email) : that.email != null) return false;
+    return group != null ? group.equals(that.group) : that.group == null;
   }
 
   @Override
   public int hashCode() {
-    int result = firstname != null ? firstname.hashCode() : 0;
+    int result = id != null ? id.hashCode() : 0;
+    result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+    result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
     result = 31 * result + (home != null ? home.hashCode() : 0);
     result = 31 * result + (mobile != null ? mobile.hashCode() : 0);
     result = 31 * result + (email != null ? email.hashCode() : 0);
+    result = 31 * result + (group != null ? group.hashCode() : 0);
     return result;
   }
 }
