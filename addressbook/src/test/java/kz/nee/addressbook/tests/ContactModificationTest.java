@@ -17,7 +17,7 @@ public class ContactModificationTest extends TestBase{
     }
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().selectedUpdateContact(before.size() - 1);
-    String id = before.get(before.size() - 1).getId();
+    int id = (int) before.get(before.size() - 1).getId();
     ContactData contact = new ContactData(id, "Yevgeniy2", "Nozikov2", null, null, "+770755555552", "nee@nee.kz2", null);
     app.getContactHelper().fillContactForm(contact, false);
     app.getContactHelper().submitUpdateContact();
