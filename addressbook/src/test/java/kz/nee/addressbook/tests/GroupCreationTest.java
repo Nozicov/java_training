@@ -1,6 +1,5 @@
 package kz.nee.addressbook.tests;
 
-import kz.nee.addressbook.model.ContactData;
 import kz.nee.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
