@@ -63,6 +63,26 @@ public class GroupHelper extends  HelperBase {
     returnGroupPage();
   }
 
+  public void modifyGroup(int index, GroupData group) {
+    selectGroup(index);
+    initGroupModification();
+    fillGroupForm(group);
+    submitGroupModification();
+    if (! isVisibleSuccessMessage()){
+      Assert.fail("Successful group deletion message was not displayed!");
+    }
+    returnGroupPage();
+  }
+
+  public void deleteGroup(int index) {
+    selectGroup(index);
+    deleteSelectedGroups();
+    if (! isVisibleSuccessMessage()){
+      Assert.fail("Successful group deletion message was not displayed!");
+    }
+    returnGroupPage();
+  }
+
   public int getGroupCount() {
     return wd.findElements(By.name("selected[]")).size();
   }

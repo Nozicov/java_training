@@ -42,6 +42,25 @@ public class ContactHelper extends HelperBase {
     }
   }
 
+  public void modifyContact(int index, ContactData contact) {
+    selectedUpdateContact(index);
+    fillContactForm(contact, false);
+    submitUpdateContact();
+    if (! isVisibleSuccessMessage()){
+      Assert.fail("Successful contact modification message was not displayed!");
+    }
+    gotoContactPage();
+  }
+
+  public void deletionContact(int index) {
+    selectedContact(index);
+    submitSelectedDeleteContact();
+    if (! isVisibleSuccessMessage()){
+      Assert.fail("Successful contact deletion message was not displayed!");
+    }
+    gotoContactPage();
+  }
+
   public void initContactCreation() {
     click(By.linkText("add new"));
   }
@@ -67,6 +86,10 @@ public class ContactHelper extends HelperBase {
 
   public void returnContactPage() {
     click(By.linkText("home page"));
+  }
+
+  public void gotoContactPage() {
+    click(By.linkText("home"));
   }
 
   public boolean isThereAContact() {
