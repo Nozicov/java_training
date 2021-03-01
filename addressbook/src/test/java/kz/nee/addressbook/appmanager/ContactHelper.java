@@ -42,7 +42,7 @@ public class ContactHelper extends HelperBase {
     }
   }
 
-  public void modifyContact(int index, ContactData contact) {
+  public void modify(int index, ContactData contact) {
     selectedUpdateContact(index);
     fillContactForm(contact, false);
     submitUpdateContact();
@@ -52,7 +52,7 @@ public class ContactHelper extends HelperBase {
     gotoContactPage();
   }
 
-  public void deletionContact(int index) {
+  public void deletion(int index) {
     selectedContact(index);
     submitSelectedDeleteContact();
     if (! isVisibleSuccessMessage()){
@@ -96,7 +96,7 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.xpath("//img[@title='Edit'][1]"));
   }
 
-  public void createContact(ContactData contact, boolean creation) {
+  public void create(ContactData contact, boolean creation) {
     initContactCreation();
     fillContactForm(contact, creation);
     submitContactCreation();
@@ -110,7 +110,7 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
     for (WebElement element: elements){
