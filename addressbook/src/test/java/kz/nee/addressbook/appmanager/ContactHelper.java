@@ -120,7 +120,7 @@ public class ContactHelper extends HelperBase {
       String firstname = cells.get(2).getText();
       String email = cells.get(4).findElement(By.tagName("a")).getText();
       String mobile = cells.get(5).getText();
-      ContactData contact = new ContactData(id, firstname, lastname, null, null, mobile, email, null);
+      ContactData contact = new ContactData().withId(id).withFirstname(firstname).withLastname(lastname).withMobile(mobile).withEmail(email);
       contacts.add(contact);
     }
 

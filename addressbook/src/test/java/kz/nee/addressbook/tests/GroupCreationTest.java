@@ -15,7 +15,7 @@ public class GroupCreationTest extends TestBase {
 
     List<GroupData> before = app.group().list();
 
-    GroupData group = new GroupData("Group1", "Logo1", "Comment1");
+    GroupData group = new GroupData().withName("Test group");
 
     app.group().create(group);
 
@@ -23,7 +23,7 @@ public class GroupCreationTest extends TestBase {
     Assert.assertEquals(after.size(), before.size() + 1);
 
     int max = after.stream().max(Comparator.comparingInt(GroupData::getId)).get().getId();
-    group.setId(max);
+    group.withId(max);
     before.add(group);
 
     Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
