@@ -1,5 +1,6 @@
 package kz.nee.addressbook.appmanager;
 
+import kz.nee.addressbook.tests.TestBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -39,6 +40,7 @@ public class ApplicationManager {
   }
 
   public void stop() {
+    TestBase.app.getSessionHelper().logout();
     wd.quit();
   }
 
