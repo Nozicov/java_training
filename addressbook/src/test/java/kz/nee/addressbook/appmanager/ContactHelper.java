@@ -8,12 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
-
-  private By locator;
 
   public ContactHelper(WebDriver wd) {
     super(wd);
@@ -42,8 +41,18 @@ public class ContactHelper extends HelperBase {
     }
   }
 
-  public void modify(int index, ContactData contact) {
-    selectedUpdateContact(index);
+  public void create(ContactData contact, boolean creation) {
+    initContactCreation();
+    fillContactForm(contact, creation);
+    submitContactCreation();
+    if (! isVisibleSuccessMessage()){
+      Assert.fail("Successful contact creation message was not displayed!");
+    }
+    returnContactPage();
+  }
+
+  public void modify(ContactData contact) {
+    selectedUpdateContactById(contact.getId());
     fillContactForm(contact, false);
     submitUpdateContact();
     if (! isVisibleSuccessMessage()){
@@ -52,8 +61,8 @@ public class ContactHelper extends HelperBase {
     gotoContactPage();
   }
 
-  public void deletion(int index) {
-    selectedContact(index);
+  public void deletion(ContactData contact) {
+    selectedContactById(contact.getId());
     submitSelectedDeleteContact();
     if (! isVisibleSuccessMessage()){
       Assert.fail("Successful contact deletion message was not displayed!");
@@ -65,8 +74,8 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-  public void selectedContact(int index) {
-    wd.findElements(By.xpath("//input[@name='selected[]']")).get(index).click();
+  public void selectedContactById(int id) {
+    wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
   }
 
   public void submitSelectedDeleteContact() {
@@ -76,8 +85,8 @@ public class ContactHelper extends HelperBase {
     }
   }
 
-  public void selectedUpdateContact(int index) {
-    wd.findElements(By.xpath("//img[@title='Edit']")).get(index).click();
+  public void selectedUpdateContactById(int id) {
+    wd.findElement(By.xpath("//a[contains(@href,'edit.php?id=" + id + "')]")).click();
   }
 
   public void submitUpdateContact() {
@@ -96,22 +105,12 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.xpath("//img[@title='Edit'][1]"));
   }
 
-  public void create(ContactData contact, boolean creation) {
-    initContactCreation();
-    fillContactForm(contact, creation);
-    submitContactCreation();
-    if (! isVisibleSuccessMessage()){
-      Assert.fail("Successful contact creation message was not displayed!");
-    }
-    returnContactPage();
-  }
-
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
     List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
     for (WebElement element: elements){
       List<WebElement> cells = element.findElements(By.tagName("td"));
@@ -126,4 +125,5 @@ public class ContactHelper extends HelperBase {
 
     return contacts;
   }
+
 }

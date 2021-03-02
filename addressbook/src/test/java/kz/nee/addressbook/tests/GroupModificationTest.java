@@ -5,15 +5,14 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class GroupModificationTest extends TestBase{
 
   @BeforeMethod
   public void ensurePreconditions(){
     app.goTo().groupPage();
-    if (app.group().list().size() == 0){
+    if (app.group().all().size() == 0){
       app.group().create(new GroupData().withName("Test group").withHeader("Text heater").withFooter("Text footer"));
     }
   }
@@ -21,24 +20,22 @@ public class GroupModificationTest extends TestBase{
   @Test
   public void testGroupModificationTest() throws Exception {
 
-    List<GroupData> before = app.group().list();
+    Set<GroupData> before = app.group().all();
+    GroupData modifiedGroup = before.iterator().next();
 
-    int index = before.size() - 1;
-    int id = before.get(index).getId();
-    GroupData group = new GroupData().withId(id).withName("Test group-up").withHeader("Text heater-up").withFooter("Text footer-up");
+    GroupData group = new GroupData()
+            .withId(modifiedGroup.getId())
+            .withName("Test group-up")
+            .withHeader("Text heater-up")
+            .withFooter("Text footer-up");
 
-    app.group().modify(index, group);
+    app.group().modify(group);
 
-    List<GroupData> after = app.group().list();
+    Set<GroupData> after = app.group().all();
     Assert.assertEquals(before.size(), after.size());
 
-    before.remove(index);
+    before.remove(modifiedGroup);
     before.add(group);
-
-    Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
-    before.sort(byId);
-    after.sort(byId);
-
     Assert.assertEquals(before, after);
   }
 

@@ -5,39 +5,40 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class ContactModificationTest extends TestBase{
 
   @BeforeMethod
   public void ensurePrecondirions(){
     app.goTo().gotoHomePage();
-    if (app.contact().list().size() == 0){
+    if (app.contact().all().size() == 0){
       app.contact().create(new ContactData().withFirstname("Yevgeniy").withLastname("Nozikov").withNickname("NEE").withMobile("+77075555555").withEmail("nee@nee.kz").withGroup("Group1"), true);
     }
   }
 
   @Test
   public void testContactModification () throws Exception {
-    List<ContactData> before = app.contact().list();
 
-    int index = before.size() - 1;
-    int id = before.get(index).getId();
-    ContactData contact = new ContactData().withId(id).withFirstname("Yevgeniy-up").withLastname("Nozikov-up").withNickname("NEE-up").withMobile("+77075555888").withEmail("nee@nee.kz-up").withGroup("Group-up");
+    Set<ContactData> before = app.contact().all();
+    ContactData modifiedContact = before.iterator().next();
 
-    app.contact().modify(index, contact);
+    ContactData contact = new ContactData()
+            .withId(modifiedContact.getId())
+            .withFirstname("Yevgeniy-up")
+            .withLastname("Nozikov-up")
+            .withNickname("NEE-up")
+            .withMobile("+77075555888")
+            .withEmail("nee@nee.kz-up")
+            .withGroup("Group-up");
 
-    List<ContactData> after = app.contact().list();
+    app.contact().modify(contact);
+
+    Set<ContactData> after = app.contact().all();
     Assert.assertEquals(before.size(), after.size());
 
-    before.remove(index);
+    before.remove(modifiedContact);
     before.add(contact);
-
-    Comparator<? super ContactData> byId = Comparator.comparingInt(ContactData::getId);
-    before.sort(byId);
-    after.sort(byId);
-
     Assert.assertEquals(before, after);
   }
 
