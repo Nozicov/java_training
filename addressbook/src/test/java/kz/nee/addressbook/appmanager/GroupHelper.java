@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import javax.swing.*;
 import java.util.List;
 
 public class GroupHelper extends  HelperBase {
@@ -64,6 +65,7 @@ public class GroupHelper extends  HelperBase {
     if (! isVisibleSuccessMessage()){
       Assert.fail("Successful group creation message was not displayed!");
     }
+    groupCache = null;
     returnGroupPage();
   }
 
@@ -75,6 +77,7 @@ public class GroupHelper extends  HelperBase {
     if (! isVisibleSuccessMessage()){
       Assert.fail("Successful group deletion message was not displayed!");
     }
+    groupCache = null;
     returnGroupPage();
   }
 
@@ -84,18 +87,24 @@ public class GroupHelper extends  HelperBase {
     if (! isVisibleSuccessMessage()){
       Assert.fail("Successful group deletion message was not displayed!");
     }
+    groupCache = null;
     returnGroupPage();
   }
 
+  private Groups groupCache = null;
+
   public Groups all() {
-    Groups groups = new Groups();
+    if (groupCache != null){
+      return new Groups(groupCache);
+    }
+    groupCache = new Groups();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements){
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       String name = element.getText();
-      groups.add(new GroupData().withId(id).withName(name));
+      groupCache.add(new GroupData().withId(id).withName(name));
     }
-    return groups;
+    return new Groups(groupCache);
   }
 
 }

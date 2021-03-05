@@ -47,6 +47,7 @@ public class ContactHelper extends HelperBase {
     if (! isVisibleSuccessMessage()){
       Assert.fail("Successful contact creation message was not displayed!");
     }
+    contactCache = null;
     returnContactPage();
   }
 
@@ -57,6 +58,7 @@ public class ContactHelper extends HelperBase {
     if (! isVisibleSuccessMessage()){
       Assert.fail("Successful contact modification message was not displayed!");
     }
+    contactCache = null;
     gotoContactPage();
   }
 
@@ -66,6 +68,7 @@ public class ContactHelper extends HelperBase {
     if (! isVisibleSuccessMessage()){
       Assert.fail("Successful contact deletion message was not displayed!");
     }
+    contactCache = null;
     gotoContactPage();
   }
 
@@ -108,8 +111,13 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
+  private Contacts contactCache = null;
+
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactCache != null){
+      return new Contacts(contactCache);
+    }
+    contactCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
     for (WebElement element: elements){
       List<WebElement> cells = element.findElements(By.tagName("td"));
@@ -119,9 +127,9 @@ public class ContactHelper extends HelperBase {
       String email = cells.get(4).findElement(By.tagName("a")).getText();
       String mobile = cells.get(5).getText();
       ContactData contact = new ContactData().withId(id).withFirstname(firstname).withLastname(lastname).withMobile(mobile).withEmail(email);
-      contacts.add(contact);
+      contactCache.add(contact);
     }
-    return contacts;
+    return new Contacts(contactCache);
   }
 
 }
