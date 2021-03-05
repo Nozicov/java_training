@@ -1,11 +1,15 @@
 package kz.nee.addressbook.tests;
 
 import kz.nee.addressbook.model.ContactData;
-import org.testng.Assert;
+import kz.nee.addressbook.model.Contacts;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class ContactDeletionTest extends TestBase {
 
@@ -20,15 +24,12 @@ public class ContactDeletionTest extends TestBase {
   @Test
   public void testContactDeletion() throws Exception  {
 
-    Set<ContactData> before = app.contact().all();
+    Contacts before = app.contact().all();
     ContactData deletedContact = before.iterator().next();
-
     app.contact().deletion(deletedContact);
-
     Set<ContactData> after = app.contact().all();
-    Assert.assertEquals(after.size(), before.size() - 1);
 
-    before.remove(deletedContact);
-    Assert.assertEquals(before, after);
+    assertEquals(after.size(), before.size() - 1);
+    assertThat(after, equalTo(before.withOut(deletedContact)));
   }
 }

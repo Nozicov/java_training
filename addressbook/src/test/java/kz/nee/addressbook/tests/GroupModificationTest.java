@@ -1,11 +1,13 @@
 package kz.nee.addressbook.tests;
 
 import kz.nee.addressbook.model.GroupData;
-import org.testng.Assert;
+import kz.nee.addressbook.model.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class GroupModificationTest extends TestBase{
 
@@ -20,23 +22,18 @@ public class GroupModificationTest extends TestBase{
   @Test
   public void testGroupModificationTest() throws Exception {
 
-    Set<GroupData> before = app.group().all();
+    Groups before = app.group().all();
     GroupData modifiedGroup = before.iterator().next();
-
     GroupData group = new GroupData()
             .withId(modifiedGroup.getId())
             .withName("Test group-up")
             .withHeader("Text heater-up")
             .withFooter("Text footer-up");
-
     app.group().modify(group);
+    Groups after = app.group().all();
 
-    Set<GroupData> after = app.group().all();
-    Assert.assertEquals(before.size(), after.size());
-
-    before.remove(modifiedGroup);
-    before.add(group);
-    Assert.assertEquals(before, after);
+    assertEquals(before.size(), after.size());
+    assertThat(after, equalTo(before.withModified(group, modifiedGroup)));
   }
 
 }

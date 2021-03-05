@@ -1,11 +1,13 @@
 package kz.nee.addressbook.tests;
 
 import kz.nee.addressbook.model.ContactData;
-import org.testng.Assert;
+import kz.nee.addressbook.model.Contacts;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class ContactModificationTest extends TestBase{
 
@@ -20,9 +22,8 @@ public class ContactModificationTest extends TestBase{
   @Test
   public void testContactModification () throws Exception {
 
-    Set<ContactData> before = app.contact().all();
+    Contacts before = app.contact().all();
     ContactData modifiedContact = before.iterator().next();
-
     ContactData contact = new ContactData()
             .withId(modifiedContact.getId())
             .withFirstname("Yevgeniy-up")
@@ -31,15 +32,11 @@ public class ContactModificationTest extends TestBase{
             .withMobile("+77075555888")
             .withEmail("nee@nee.kz-up")
             .withGroup("Group-up");
-
     app.contact().modify(contact);
+    Contacts after = app.contact().all();
 
-    Set<ContactData> after = app.contact().all();
-    Assert.assertEquals(before.size(), after.size());
-
-    before.remove(modifiedContact);
-    before.add(contact);
-    Assert.assertEquals(before, after);
+    assertEquals(before.size(), after.size());
+    assertThat(after, equalTo(before.withModified(contact, modifiedContact)));
   }
 
 }
