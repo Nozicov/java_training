@@ -21,13 +21,12 @@ public class GroupDeletionTest extends TestBase {
 
   @Test
   public void testGroupDeletion() throws Exception {
-
+    app.goTo().groupPage();
     Groups before = app.group().all();
     GroupData deletedGroup = before.iterator().next();
     app.group().delete(deletedGroup);
+    assertEquals(app.group().count(), before.size() - 1);
     Groups after = app.group().all();
-
-    assertEquals(after.size(), before.size() - 1);
     assertThat(after, equalTo(before.withOut(deletedGroup)));
   }
 

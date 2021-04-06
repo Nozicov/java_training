@@ -20,8 +20,8 @@ public class GroupModificationTest extends TestBase{
   }
 
   @Test
-  public void testGroupModificationTest() throws Exception {
-
+  public void testGroupModification() throws Exception {
+    app.goTo().groupPage();
     Groups before = app.group().all();
     GroupData modifiedGroup = before.iterator().next();
     GroupData group = new GroupData()
@@ -30,9 +30,8 @@ public class GroupModificationTest extends TestBase{
             .withHeader("Text heater-up")
             .withFooter("Text footer-up");
     app.group().modify(group);
+    assertEquals(app.group().count(), before.size());
     Groups after = app.group().all();
-
-    assertEquals(before.size(), after.size());
     assertThat(after, equalTo(before.withModified(group, modifiedGroup)));
   }
 

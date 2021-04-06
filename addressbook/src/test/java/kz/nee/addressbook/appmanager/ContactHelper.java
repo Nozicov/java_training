@@ -62,7 +62,7 @@ public class ContactHelper extends HelperBase {
     gotoContactPage();
   }
 
-  public void deletion(ContactData contact) {
+  public void delete(ContactData contact) {
     selectedContactById(contact.getId());
     submitSelectedDeleteContact();
     if (! isVisibleSuccessMessage()){
@@ -107,7 +107,7 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.xpath("//img[@title='Edit'][1]"));
   }
 
-  public int getContactCount() {
+  public int count() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
