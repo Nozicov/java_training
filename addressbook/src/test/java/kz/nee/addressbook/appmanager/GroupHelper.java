@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
-import javax.swing.*;
 import java.util.List;
 
 public class GroupHelper extends  HelperBase {

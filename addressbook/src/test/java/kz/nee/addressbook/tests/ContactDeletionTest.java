@@ -2,12 +2,8 @@ package kz.nee.addressbook.tests;
 
 import kz.nee.addressbook.model.ContactData;
 import kz.nee.addressbook.model.Contacts;
-import kz.nee.addressbook.model.GroupData;
-import kz.nee.addressbook.model.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
